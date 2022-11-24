@@ -87,6 +87,9 @@ def main():
         for via in test['viaPoints']:
             plt.plot(via[0], via[1], 'o', markersize=8, linestyle='solid', markeredgecolor='black')
 
+        for via in ref['viaPoints']:
+            plt.plot(via[0], via[1], 'o', markersize=4, alpha=0.5, color="grey")
+
         plt.gca().set_aspect('equal','box')
         plt.ylim(plt.ylim()[::-1])
         plt.savefig(os.path.join(testDir, args.test) + '.png')
