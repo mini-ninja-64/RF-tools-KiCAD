@@ -52,11 +52,11 @@ def verbosePlot(object, isPoints = False, isPaths = False, isPolygons = False):
     for child in object:
         data = np.array(child)
         if isPolygons:
-            plt.fill(data.T[0], data.T[1], facecolor='grey', alpha=0.3, linestyle='--', linewidth=1)
+            plt.fill(data.T[0], data.T[1], facecolor='grey', alpha=0.3, edgecolor='black', linestyle='dashed', linewidth=1)
         elif isPaths:
-            plt.plot(data.T[0], data.T[1], linestyle='-', linewidth=3)
+            plt.plot(data.T[0], data.T[1], linestyle='solid', linewidth=3)
         elif isPoints:
-            plt.plot(data.T[0], data.T[1], linestyle='', marker='x', markersize=10, mew=3)
+            plt.plot(data.T[0], data.T[1], linestyle='none', marker='x', markersize=10, mew=3)
 
 def main():
     testDir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tests')
@@ -85,9 +85,9 @@ def main():
             plt.plot(np.array(path).T[0], np.array(path).T[1], linewidth=5)
 
         for via in test['viaPoints']:
-            plt.plot(via[0], via[1], 'o', markersize=10)
+            plt.plot(via[0], via[1], 'o', markersize=8, linestyle='solid', markeredgecolor='black')
 
-        plt.axes().set_aspect('equal','box')
+        plt.gca().set_aspect('equal','box')
         plt.ylim(plt.ylim()[::-1])
         plt.savefig(os.path.join(testDir, args.test) + '.png')
         plt.show()
